@@ -67,20 +67,18 @@ $${\text{score}} = w_E \cdot \text{Elongation} - w_M \cdot \text{Modulus} - w_V 
 
 </div>
 
-
 - Decision variables: parts-of-10 composition `[PUDA, IBOA, EHMA, MAA]`
 - Default bounds:
-- PUDA: 4.0–5.0
-- IBOA: 3.0–5.0
-- EHMA: 0.2–5.0
-- MAA: 0.4–1.0
+  - PUDA: 4.0–5.0
+  - IBOA: 3.0–5.0
+  - EHMA: 0.2–5.0
+  - MAA: 0.4–1.0
 - Mass balance enforced via quadratic penalty: `penalty = λ * (sum(x) - 10)^2`
 - Uses `scipy.optimize.differential_evolution` with `seed=42`
-- Minimal output: only prints optimal composition as fractions
 
 - Tunable parameters:
-- Weights: `wE`, `wM`, `wV`, `wR`
-- DE parameters: `maxiter`, `popsize`, `seed`
+  - Weights: `wE`, `wM`, `wV`, `wR`
+  - DE parameters: `maxiter`, `popsize`, `seed`
 
 ---
 
@@ -89,9 +87,9 @@ $${\text{score}} = w_E \cdot \text{Elongation} - w_M \cdot \text{Modulus} - w_V 
 1. Ensure `train_data/` and `val_data/` follow the structure above.
 2. Open `MLR_formulation.ipynb`
 3. Run cells in order:
- - **1** Train models
- - **2** Print train metrics, show 2×2 scatter, (optionally export CSV and sanity check)
- - **3** Run DE optimization (edit weights/bounds as needed)
+ - **1.** Train models
+ - **2.** Print train metrics, show 2×2 scatter, (optionally export CSV and sanity check)
+ - **3.** Run DE optimization (edit weights/bounds as needed)
 
 ---
 
