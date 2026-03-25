@@ -6,7 +6,7 @@ This repository contains a Jupyter notebook for fitting and evaluating support v
 
 ## Data Layout
 
-All input data are in `.npy` format, located in two folders:
+All input data are in `.npy` format, located in three folders:
 
 ```
 train_data/
@@ -14,14 +14,21 @@ train_data/
 ├── y_viscosity.npy      # (33,)
 ├── y_elongation.npy     # (33,)
 ├── y_modulus.npy        # (33,)
-└── y_reactiontime.npy   # (33,)
+└── y_reactiontime2.npy   # (33,)
 
 val_data/
 ├── X.npy                # (3, 4)
 ├── y_viscosity.npy
 ├── y_elongation.npy
 ├── y_modulus.npy
-└── y_reactiontime.npy
+└── y_reactiontime2.npy
+
+ext_val_data/
+├── X.npy                # (3, 4)
+├── y_viscosity.npy
+├── y_elongation.npy
+├── y_modulus.npy
+└── y_reactiontime2.npy
 ```
 
 
