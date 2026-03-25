@@ -38,14 +38,26 @@ ext_val_data/
 
 ### 1. Training (33 points)
 
-- Loads data from `train_data/*.npy`
-- Normalizes `X_tr` to **parts-of-10**:
-- Applies log normalization to each target
-- Fits four RBF-SVRs with fixed hyperparameters:
-  - **Viscosity**: `SVR(kernel='rbf', C=100, gamma=0.1, epsilon=0.01)`
-  - **Elongation**: `SVR(kernel='rbf', C=400, gamma=0.01, epsilon=0.01)`
-  - **Modulus**: `SVR(kernel='rbf', C=17, gamma=0.04, epsilon=0.13)`
-  - **Reaction Time**: `SVR(kernel='rbf', C=100, gamma=0.1, epsilon=0.01)`
+The notebook first loads the 33-point training set from `train_data/` and fits four separate RBF-SVR surrogate models.
+
+### Preprocessing
+- Loads `X_tr`, `y_viscosity`, `y_elongation`, `y_modulus`, and `y_reactiontime2`
+- Converts `X_tr` to parts-of-10 if needed
+- Applies `log1p` normalization to each target before model fitting
+
+### SVR models
+The following fixed hyperparameters are used:
+
+- **Viscosity**  
+  `SVR(kernel='rbf', C=100, gamma=0.1, epsilon=0.01)`
+- **Elongation**  
+  `SVR(kernel='rbf', C=400, gamma=0.01, epsilon=0.01)`
+- **Modulus**  
+  `SVR(kernel='rbf', C=17, gamma=0.04, epsilon=0.13)`
+- **Reaction Time**  
+  `SVR(kernel='rbf', C=68, gamma=0.03, epsilon=0.1)`
+
+These fitted models are then used in the optimization and validation sections.
 
 ---
 
