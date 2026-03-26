@@ -51,7 +51,7 @@ The following fixed hyperparameters are used:
 - **Viscosity**  
   `SVR(kernel='rbf', C=100, gamma=0.1, epsilon=0.01)`
 - **Elongation**  
-  `SVR(kernel='rbf', C=400, gamma=0.01, epsilon=0.01)`
+  `SVR(kernel='rbf', C=100, gamma=0.03, epsilon=0.001)`
 - **Modulus**  
   `SVR(kernel='rbf', C=17, gamma=0.04, epsilon=0.13)`
 - **Reaction Time**  
@@ -108,7 +108,7 @@ The notebook loads `val_data/`, combines it with `train_data/`, and performs 5-f
 - Stacks `train_data` and `val_data`
 - Applies `log1p` normalization to each target
 - Runs 5-fold CV with:
-  - `KFold(n_splits=5, shuffle=True, random_state=42)`
+  - `KFold(n_splits=5, shuffle=True, random_state=106)`
 
 For each fold, the notebook:
 - retrains the four SVR models on the fold training split
@@ -118,8 +118,6 @@ For each fold, the notebook:
 
 #### Reported metrics
 For each property, the following are computed:
-- `R2_log`
-- `RMSE_log`
 - `R2_raw`
 - `RMSE_raw`
 
@@ -159,7 +157,7 @@ The notebook prints:
 
 For each property, the reported metrics are:
 - raw-scale `R²`
-- log-space `RMSE`
+- raw-scale `RMSE`
 
 ### 3.3 External validation table and parity plot
 
