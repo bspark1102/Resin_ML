@@ -123,11 +123,7 @@ These fitted models are then used in the optimization and validation sections.
 
 - Objective:
 
-<div align="center">
-
 $${\text{score}} = w_E \cdot \text{Elongation} - w_M \cdot \text{Modulus} - w_V \cdot \text{Viscosity} - w_R \cdot \text{ReactionTime}$$
-
-</div>
 
 - Decision variables: parts-of-10 composition `[PUDA, IBOA, EHMA, MAA]`
 - Default bounds:
