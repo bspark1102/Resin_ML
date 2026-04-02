@@ -6,11 +6,11 @@ This repository contains a Jupyter notebook for fitting and evaluating support v
 
 ## Repository Contents
 
-- `train_data/` — training dataset used for final model fitting
-- `val_data/` — three anchor formulations used in the 36-point in-domain cross-validation set
-- `ext_val_data/` — external validation dataset
-- `MLR_formulation.ipynb` — main notebook containing training, optimization, and validation
-- `README.md` — instructions for installation, execution, and reproduction of results
+- `train_data/` - training dataset used for final model fitting
+- `val_data/` - three anchor formulations used in the 36-point in-domain cross-validation set
+- `ext_val_data/` - external validation dataset
+- `MLR_formulation.ipynb` - main notebook containing training, optimization, and validation
+- `README.md` - instructions for installation, execution, and reproduction of results
 
 
 ---
@@ -176,13 +176,13 @@ For each fold, the notebook:
 
 #### Reported metrics
 For each property, the following are computed:
-- `R²`
+- `R2`
 - `RMSE`
 
 #### Outputs
 The notebook prints:
 - fold-wise metrics for each fold
-- **CV summary (mean ± s.d. across folds)**
+- **CV summary (mean +- s.d. across folds)**
 - **OOF metrics on all 36 points**
 
 These are reported for:
@@ -214,7 +214,7 @@ The notebook prints:
   - external validation set: 9 points
 
 For each property, the reported metrics are:
-- raw-scale `R²`
+- raw-scale `R2`
 - raw-scale `RMSE`
 
 ### 3.3 External validation table and parity plot
