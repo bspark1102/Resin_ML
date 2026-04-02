@@ -4,6 +4,17 @@ This repository contains a Jupyter notebook for fitting and evaluating support v
 
 ---
 
+## Repository Contents
+
+- `train_data/` — training dataset used for final model fitting
+- `val_data/` — three anchor formulations used in the 36-point in-domain cross-validation set
+- `ext_val_data/` — external validation dataset
+- `MLR_formulation.ipynb` — main notebook containing training, optimization, and validation
+- `README.md` — instructions for installation, execution, and reproduction of results
+
+
+---
+
 ## Data Layout
 
 All input data are in `.npy` format, located in three folders:
@@ -30,6 +41,53 @@ ext_val_data/
 ├── y_modulus.npy         # (9,)
 └── y_reactiontime2.npy   # (9,)
 ```
+---
+
+## System Requirements
+
+### Software
+
+This workflow was implemented in Python and uses standard scientific Python packages.
+
+Required packages:
+- Python 
+- NumPy
+- pandas
+- SciPy
+- scikit-learn
+- matplotlib
+- Jupyter Notebook or JupyterLab
+
+### Tested Environment
+
+- Python: `3.10.12`
+- NumPy: `1.26.0`
+- pandas: `2.2.1`
+- SciPy: `1.14.1`
+- scikit-learn: `1.4.1.post1`
+- matplotlib: `3.10.1`
+- jupyterlab: `4.1.2`
+
+### Operating System / Hardware
+
+- OS: `Ubuntu 22.04.4 LTS`
+- Tested on a standard desktop or workstation environment
+- No GPU acceleration is required
+- No non-standard hardware is required
+
+---
+
+## Installation
+
+1. Clone or download the repository.
+2. Install the required Python packages.
+3. Open the notebook `MLR_formulation.ipynb`.
+
+Example package installation:
+
+    pip install numpy pandas scipy scikit-learn matplotlib notebook
+
+Typical installation time on a standard desktop computer is approximately **5–10 minutes**, depending on package availability and internet speed.
 
 
 ---
@@ -118,8 +176,8 @@ For each fold, the notebook:
 
 #### Reported metrics
 For each property, the following are computed:
-- `R2_raw`
-- `RMSE_raw`
+- `R²`
+- `RMSE`
 
 #### Outputs
 The notebook prints:
@@ -163,11 +221,8 @@ For each property, the reported metrics are:
 
 The notebook also:
 - builds a table of external validation predictions
-- optionally saves it as:
-  - `ext_val_data/external_validation_predictions.csv`
-  - `ext_val_data/external_validation_predictions.xlsx`
 
-A 2×2 parity plot is generated for:
+A 2x2 parity plot is generated for:
 - Viscosity
 - Elongation
 - Young's Modulus
@@ -198,6 +253,47 @@ The notebook is intended to be executed sequentially. Later sections assume the 
 
 ---
 
+## Expected Output
+
+Running the notebook should produce:
+- fitted SVR surrogate models for the four target properties
+- 5-fold cross-validation metrics
+- out-of-fold (OOF) summary metrics
+- external validation metrics
+- a 2x2 parity plot
+- an optimized candidate composition from differential evolution
+
+Typical runtime for the full workflow on a standard desktop computer is approximately **2-3 minutes**, depending on the Python environment and plotting/export steps.
+
+---
+
+## Running on Your Own Data
+
+You can run the workflow on your own formulation dataset if you preserve the same folder structure and file naming convention.
+
+Requirements:
+- `X.npy` must contain four composition variables in the order:
+  - `[PUDA, IBOA, EHMA, MAA]`
+- target files must be named:
+  - `y_viscosity.npy`
+  - `y_elongation.npy`
+  - `y_modulus.npy`
+  - `y_reactiontime2.npy`
+
+If your compositions are stored in wt% summing to 100, the notebook will convert them internally to parts-of-10.
+
+---
+
+## Reproducing Manuscript Results
+
+To reproduce the reported workflow:
+1. Use the provided `train_data/`, `val_data/`, and `ext_val_data/`
+2. Open `MLR_formulation.ipynb`
+3. Run the notebook cells sequentially
+4. Confirm that the generated metrics, parity plots, and optimized composition match the reported workflow outputs
+
+---
+
 ## Reproducibility & Compatibility
 
 - The column order of all input arrays must be:
@@ -217,7 +313,7 @@ The notebook is intended to be executed sequentially. Later sections assume the 
   - `np.expm1(...)` for inverse transformation during prediction
 
 - 5-fold CV uses:
-  - `KFold(n_splits=5, shuffle=True, random_state=42)`
+  - `KFold(n_splits=5, shuffle=True, random_state=106)`
 
 - Differential evolution uses:
   - `seed = 42`
@@ -237,6 +333,5 @@ The notebook is intended to be executed sequentially. Later sections assume the 
 ## Notes
 
 - The notebook assumes all target arrays are nonnegative.
-- External validation predictions can be exported from the validation section.
 - The notebook should be run in order without skipping earlier sections.
 
